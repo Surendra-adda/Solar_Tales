@@ -1,0 +1,13 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="issGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C0C0C0"/>
+      <stop offset="100%" style="stop-color:#808080"/>
+    </linearGradient>
+  </defs>
+  <rect x="35" y="30" width="10" height="20" fill="url(#issGrad)" rx="2"/>
+  <rect x="15" y="35" width="50" height="6" fill="url(#issGrad)" rx="2"/>
+  <rect x="30" y="25" width="20" height="4" fill="#4169E1" rx="2"/>
+  <rect x="10" y="32" width="12" height="8" fill="#FFD700" rx="2"/>
+  <rect x="58" y="32" width="12" height="8" fill="#FFD700" rx="2"/>
+</svg>
