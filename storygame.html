@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Tales - Interactive Space Weather Story</title>
+    <meta name="description" content="Join Sunny, Flarey, and Astronaut Maya on an educational journey through space weather phenomena">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="starfield-bg">
+        <div class="aurora-overlay"></div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        
+        <!-- Landing Screen -->
+        <section id="landing" class="screen active">
+            <div class="landing-content">
+                <div class="logo-container">
+                    <div class="sun-icon"></div>
+                    <h1 class="main-title">Solar Tales</h1>
+                    <p class="subtitle">An Interactive Space Weather Adventure</p>
+                </div>
+                
+                <div class="landing-buttons">
+                    <button id="start-journey" class="btn btn-primary" aria-label="Start the space weather journey">
+                        🚀 Start Journey
+                    </button>
+                    <button id="about-btn" class="btn btn-secondary" aria-label="Learn more about this story">
+                        ℹ️ About
+                    </button>
+                </div>
+                
+                <div id="about-content" class="about-section hidden">
+                    <div class="about-text">
+                        <p>Embark on an exciting journey with <strong>Sunny the Sun</strong>, <strong>Flarey the Solar Flare</strong>, <strong>Nani the Nanoscale Particle</strong>, and <strong>Astronaut Maya</strong> as they explore the dynamic world of <strong>space weather</strong>!</p>
+                        <p>Discover how <strong>solar storms</strong> and <strong>auroras</strong> form, and learn how <strong>space weather impacts Earth, technology, and space missions</strong>—all through an engaging, interactive story grounded in real <strong>NASA research</strong>.</p>
+                        <button id="close-about" class="btn btn-small">Close</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Story Screen -->
+        <section id="story" class="screen">
+            <div class="story-content">
+                <div class="scene-container">
+                    <div class="scene-image">
+                        <div id="scene-svg" class="svg-container"></div>
+                    </div>
+                    <div class="scene-text">
+                        <h2 id="scene-title">Scene Title</h2>
+                        <div id="scene-description" class="text-content"></div>
+                        <div id="nasa-fact" class="nasa-fact hidden">
+                            <div class="fact-icon">🛰️</div>
+                            <div class="fact-content"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="story-controls">
+                    <div class="progress-indicator">
+                        <span id="scene-progress">Scene 1 of 7</span>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <button id="next-scene" class="btn btn-primary">Next →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Screen -->
+        <section id="quiz" class="screen">
+            <div class="quiz-content">
+                <div class="quiz-header">
+                    <h2>Space Weather Quiz</h2>
+                    <div class="quiz-progress">
+                        <span id="quiz-progress">Question 1 of 10</span>
+                        <div class="score-display">Score: <span id="current-score">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="question-container">
+                    <h3 id="question-text">Question text will appear here</h3>
+                    <div id="options-container" class="options-container"></div>
+                    <div id="feedback" class="feedback hidden"></div>
+                    <button id="next-question" class="btn btn-primary hidden">Next Question →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scoreboard Screen -->
+        <section id="scoreboard" class="screen">
+            <div class="scoreboard-content">
+                <div class="badge-container">
+                    <div id="badge-icon" class="badge-icon"></div>
+                    <h2 id="badge-title">Space Explorer</h2>
+                </div>
+                
+                <div class="final-score">
+                    <h3>Final Score</h3>
+                    <div class="score-circle">
+                        <span id="final-score-text">0/10</span>
+                    </div>
+                </div>
+                
+                <div class="score-actions">
+                    <button id="see-credits" class="btn btn-primary">See Credits</button>
+                    <button id="restart-journey" class="btn btn-secondary">Journey Again</button>
+                    <button id="show-data" class="btn btn-secondary">🔬 View Data</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Credits Screen -->
+        <section id="credits" class="screen">
+            <div class="credits-content">
+                <h2>Credits & Resources</h2>
+                
+                <div class="credits-section">
+                    <h3>Story Team</h3>
+                    <ul>
+                        <li><strong>Science Content:</strong> NASA Space Weather Research</li>
+                        <li><strong>Characters:</strong> Sunny (The Sun),Flarey (Solar Flare / CME),Nani (12-year-old stargazing girl),Pilot Ravi (Pilot),
+                            Farmer Lila (Farmer),Astronaut Maya (Astronaut on the ISS),Omar (Power grid operator)</li>
+                        <li><strong>Design & Interactive Development:</strong> Solar Tales Development Team</li>
+                    </ul>
+                </div>
+                
+                <div class="credits-section">
+                    <h3>NASA Resources Used</h3>
+                    <ul>
+                        <li><a href="https://science.nasa.gov/sun/solar-storms-and-flares/" target="_blank" rel="noopener">NASA: Solar Storms and Flares</a></li>
+                        <li><a href="https://science.nasa.gov/heliophysics/focus-areas/space-weather/" target="_blank" rel="noopener">NASA: NASA Space Weather Website</a></li>
+                        <li><a href="https://science.nasa.gov/space-weather-centers-of-excellence/" target="_blank" rel="noopener">NASA: Space Weather Centers of Excellence</a></li>
+                        <li><a href="https://www.spaceweather.gc.ca/index-en.php" target="_blank" rel="noopener">Space Weather Canada</a></li>
+                    </ul>
+                </div>
+                
+                <div class="credits-actions">
+                    <button id="back-to-start" class="btn btn-primary">Back to Start</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Explorer Modal -->
+        <div id="data-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Space Weather Data Explorer</h3>
+                    <button id="close-data" class="close-btn" aria-label="Close data explorer">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="chart-container">
+                         <img id="space-weather-chart" src="assets/kp-index-chart.png" alt="Planetary K-index chart showing geomagnetic activity" style="width: 100%; height: auto; max-height: 400px; display: block;">
+                    </div>
+                    <div class="chart-caption">
+                          <p><strong>Data Source:</strong> <a href="https://www.swpc.noaa.gov/products/planetary-k-index" target="_blank" rel="noopener">NOAA SWPC Planetary K-index</a> (Static image)</p>
+                         <p>This image shows the Kp-index values (geomagnetic activity levels) over time. Higher values indicate stronger geomagnetic storms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <!-- JavaScript -->
+    <script src="scenes.js"></script>
+    <script src="quiz.js"></script>
+    <script src="app.js"></script>
+    <div class="gtranslate_wrapper"></div>
+<script>window.gtranslateSettings = {"default_language":"en","languages":["en","hi","te"],"wrapper_selector":".gtranslate_wrapper", "language_names":{
+            "hi":"हिंदी",
+            "te":"తెలుగు"
+        }};</script>
+<script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+
+</body>
+</html>

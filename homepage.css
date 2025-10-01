@@ -1,0 +1,313 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  color: #e0e0e0;
+  background: radial-gradient(circle at top, #0d0d2b, #000);
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Starfield Background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  opacity: 0.2;
+  z-index: -1;
+  animation: twinkle 20s linear infinite;
+}
+
+@keyframes twinkle {
+  0% { background-position: 0 0; }
+  100% { background-position: 1000px 1000px; }
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: radial-gradient(circle at top, #0d0d2b, #000); /* Space gradient */
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 10px rgba(0,255,255,0.3);
+  overflow: hidden;
+}
+
+.navbar .logo {
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: #00ffff;
+}
+
+/* Starfield in Navbar */
+.navbar::before,
+.navbar::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: transparent;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.navbar::before {
+  background: radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+              radial-gradient(1px 1px at 70% 80%, #0ff, transparent),
+              radial-gradient(1.5px 1.5px at 90% 40%, #ff0, transparent),
+              radial-gradient(2px 2px at 50% 60%, #fff, transparent);
+  animation: twinkle 8s linear infinite;
+}
+
+.navbar::after {
+  background: radial-gradient(2px 2px at 10% 70%, #fff, transparent),
+              radial-gradient(1px 1px at 80% 20%, #0ff, transparent),
+              radial-gradient(1.5px 1.5px at 40% 50%, #ff0, transparent);
+  animation: twinkle 12s linear infinite;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #00ffff;
+}
+
+.play-btn {
+  background: #00ffff;
+  color: #0d0d2b !important;
+  padding: 6px 14px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+/* Hero Section */
+.hero {
+  background: url('assets/main.jpg') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+  background-blend-mode: overlay;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  max-width: 700px;
+}
+
+.btn {
+  background: #00ffff;
+  color: #0d0d2b;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 0 10px #00ffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  background: #00e6e6;
+}
+
+.btn:hover::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  width: 10px;
+  height: 2px;
+  background: #fff;
+  transform: translateY(-50%);
+  animation: shoot 0.6s linear forwards;
+}
+
+@keyframes shoot {
+  0% { left: -30px; opacity: 0; }
+  50% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Cards Section */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 100px 50px;
+  background: radial-gradient(circle at top, #0d0d2b, #000); /* Space gradient */
+  flex-wrap: nowrap; /* Keep cards horizontal */
+  position: relative;
+  overflow-x: auto; /* Allow horizontal scroll if screen too small */
+  overflow-y: hidden;
+  z-index: 1;
+}
+
+/* Optional: hide scrollbar for a cleaner look */
+.cards::-webkit-scrollbar {
+  display: none;
+}
+
+/* Card Style */
+.card {
+  flex: 0 0 300px; /* fixed width, prevents shrinking */
+  position: relative;
+  background: rgba(10, 10, 25, 0.9);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0,255,255,0.15);
+  transition: transform 0.3s ease;
+  color: #fff;
+  z-index: 1;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 15px;
+  background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%);
+  z-index: -1;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-content h3 {
+  color: #00ffff;
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
+
+/* Team Section */
+.team {
+  padding: 80px 50px;
+  text-align: center;
+  background: #0d0d2b;
+}
+
+.team h2 {
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  background: #1a1a2e;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,255,255,0.1);
+  width: 200px;
+  transition: transform 0.3s ease;
+  color: #fff;
+  position: relative;
+}
+
+.team-card::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border-radius: 15px;
+  background: radial-gradient(circle, rgba(0,255,255,0.2) 0%, transparent 70%);
+  z-index: -1;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.team-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #00ffff;
+  transition: transform 0.5s ease;
+}
+
+.team-card:hover img {
+  transform: rotate(360deg);
+}
+
+.team-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+}
+
+/* Footer */
+footer {
+  background: #0f2027;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 10px rgba(0,255,255,0.1);
+}
