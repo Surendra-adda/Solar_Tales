@@ -1,4 +1,4 @@
-// Solar Tales - Main Application Controller
+//Main Application Controller
 class SolarTalesApp {
     constructor() {
         this.currentScene = 1;
@@ -16,7 +16,7 @@ class SolarTalesApp {
     }
 
     bindEvents() {
-        // Landing page events
+        //Landing page events
         document.getElementById('start-journey').addEventListener('click', () => {
             this.showScreen('story');
             this.loadScene(1);
@@ -30,17 +30,17 @@ class SolarTalesApp {
             document.getElementById('about-content').classList.add('hidden');
         });
 
-        // Story navigation
+        //Story navigation
         document.getElementById('next-scene').addEventListener('click', () => {
             this.nextScene();
         });
 
-        // Quiz events
+        //Quiz events
         document.getElementById('next-question').addEventListener('click', () => {
             this.nextQuestion();
         });
 
-        // Scoreboard events
+        //Scoreboard events
         document.getElementById('see-credits').addEventListener('click', () => {
             this.showScreen('credits');
         });
@@ -53,17 +53,17 @@ class SolarTalesApp {
             this.showDataModal();
         });
 
-        // Credits events
+        //Credits events
         document.getElementById('back-to-start').addEventListener('click', () => {
             this.showScreen('landing');
         });
 
-        // Data modal events
+        //Data modal events
         document.getElementById('close-data').addEventListener('click', () => {
             this.hideDataModal();
         });
 
-        // Close modal on backdrop click
+        //Close modal on backdrop click
         document.getElementById('data-modal').addEventListener('click', (e) => {
             if (e.target.id === 'data-modal') {
                 this.hideDataModal();
@@ -73,8 +73,8 @@ class SolarTalesApp {
 
     createAnimatedBackground() {
         const starfield = document.querySelector('.starfield-bg');
-        
-        // Create animated stars
+
+        //Create animated stars
         for (let i = 0; i < 100; i++) {
             const star = document.createElement('div');
             star.className = 'star';
@@ -87,15 +87,15 @@ class SolarTalesApp {
     }
 
     showScreen(screenId) {
-        // Hide all screens
+        //Hide all screens
         document.querySelectorAll('.screen').forEach(screen => {
             screen.classList.remove('active');
         });
         
-        // Show target screen
+        //Show target screen
         document.getElementById(screenId).classList.add('active');
         
-        // Update body class for screen-specific styling
+        //Update body class for screen-specific styling
         document.body.className = `screen-${screenId}`;
     }
 
@@ -104,11 +104,11 @@ class SolarTalesApp {
         
         const scene = scenes[sceneNumber - 1];
         
-        // Update scene content
+        //Update scene content
         document.getElementById('scene-title').textContent = scene.title;
         document.getElementById('scene-description').innerHTML = scene.description;
         
-        // Update NASA fact if present
+        //Update NASA fact if present
         const nasaFactElement = document.getElementById('nasa-fact');
         if (scene.nasaFact) {
             nasaFactElement.querySelector('.fact-content').innerHTML = scene.nasaFact;
@@ -117,20 +117,20 @@ class SolarTalesApp {
             nasaFactElement.classList.add('hidden');
         }
         
-        // Update scene image
+        //Update scene image
         this.updateSceneImage(scene);
         
-        // Update progress
+        //Update progress
         document.getElementById('scene-progress').textContent = `Scene ${sceneNumber} of ${this.totalScenes}`;
         const progressPercent = (sceneNumber / this.totalScenes) * 100;
         document.getElementById('progress-fill').style.width = progressPercent + '%';
         
-        // Handle final scene
+        //Handle final scene
         if (sceneNumber === this.totalScenes) {
             document.getElementById('next-scene').style.display = 'none';
             setTimeout(() => {
                 this.startQuiz();
-            }, 2000); // Give time to read final scene
+            }, 2000); //Give time to read final scene
         }
         
         this.currentScene = sceneNumber;
@@ -176,7 +176,7 @@ class SolarTalesApp {
             optionsContainer.appendChild(button);
         });
 
-        // Hide feedback and next question button
+        //Hide feedback and next question button
         document.getElementById('feedback').classList.add('hidden');
         document.getElementById('next-question').classList.add('hidden');
     }
@@ -185,16 +185,16 @@ class SolarTalesApp {
         const options = document.querySelectorAll('.option-btn');
         const feedback = document.getElementById('feedback');
         
-        // Disable all options
+        //Disable all options
         options.forEach(option => option.disabled = true);
         
-        // Show correct/incorrect styling
+        //Show correct/incorrect styling
         options[selectedIndex].classList.add(selectedIndex === correctIndex ? 'correct' : 'incorrect');
         if (selectedIndex !== correctIndex) {
             options[correctIndex].classList.add('correct');
         }
         
-        // Show feedback
+        //Show feedback
         const isCorrect = selectedIndex === correctIndex;
         if (isCorrect) {
             this.score++;
@@ -206,7 +206,7 @@ class SolarTalesApp {
         feedback.classList.remove('hidden');
         document.getElementById('next-question').classList.remove('hidden');
         
-        // Update current score display
+        //Update current score display
         document.getElementById('current-score').textContent = this.score;
     }
 
@@ -232,7 +232,7 @@ class SolarTalesApp {
         const finalScoreText = document.getElementById('final-score-text');
         finalScoreText.textContent = `${this.score}/${this.totalQuestions}`;
         
-        // Determine badge based on score
+        //Determine badge based on score
         const badgeIcon = document.getElementById('badge-icon');
         const badgeTitle = document.getElementById('badge-title');
         
@@ -247,7 +247,7 @@ class SolarTalesApp {
             badgeTitle.textContent = 'Star Gazer';
         }
         
-        // Animate score circle
+        //Animate score circle
         setTimeout(() => {
             document.querySelector('.score-circle').classList.add('animate');
         }, 500);
@@ -255,76 +255,11 @@ class SolarTalesApp {
 
     showDataModal() {
         document.getElementById('data-modal').classList.remove('hidden');
-        this.initializeChart();
     }
 
     hideDataModal() {
         document.getElementById('data-modal').classList.add('hidden');
     }
-
-    initializeChart() {
-        const ctx = document.getElementById('space-weather-chart').getContext('2d');
-        
-        // Fetch sample data
-        fetch('./data/sample-data.json')
-            .then(response => response.json())
-            .then(data => {
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: data.dates,
-                        datasets: [{
-                            label: 'Kp-Index (Geomagnetic Activity)',
-                            data: data.kpIndex,
-                            borderColor: '#646cff',
-                            backgroundColor: 'rgba(100, 108, 255, 0.1)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Space Weather Activity (Sample Data)',
-                                color: '#fff'
-                            },
-                            legend: {
-                                labels: {
-                                    color: '#fff'
-                                }
-                            }
-                        },
-                        scales: {
-                            x: {
-                                ticks: {
-                                    color: '#ccc'
-                                },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                max: 9,
-                                ticks: {
-                                    color: '#ccc'
-                                },
-                                grid: {
-                                    color: 'rgba(255, 255, 255, 0.1)'
-                                }
-                            }
-                        }
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Error loading chart data:', error);
-            });
-    }
-
 
     resetApp() {
         this.currentScene = 1;
@@ -337,7 +272,7 @@ class SolarTalesApp {
     }
 }
 
-// Initialize app when DOM is loaded
+//Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new SolarTalesApp();
 });

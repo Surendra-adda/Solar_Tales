@@ -1,4 +1,3 @@
-// Solar Tales - Scene Data
 const scenes = [
     {
         id: 1,
